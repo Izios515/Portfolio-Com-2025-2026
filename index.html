@@ -1,12 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portfolio - Votre Nom</title>
+    <style>
+        /* ========================================
+           SECTION 1 : RESET & CONFIGURATION DE BASE
+           ======================================== */
+        
+        /* Reset CSS : Supprime les marges par défaut du navigateur */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables CSS : Palette de couleurs centralisée */
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #0f172a;
+            --text-color: #1e293b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+        }
+
+        /* Configuration générale du document */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           SECTION 2 : NAVIGATION
+           ======================================== */
+        
+        /* Barre de navigation fixe en haut */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Logo dans la navigation */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Liste des liens de navigation */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        /* Style des liens de navigation */
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ========================================
+           SECTION 3 : HERO (PAGE D'ACCUEIL)
+           ======================================== */
+        
+        /* Conteneur principal de la section hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet d'animation de fond en grille */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        /* Contenu centré du hero */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        /* Titre principal du hero */
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Sous-titre du hero */
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        /* ========================================
+           SECTION 4 : ANIMATIONS
+           ======================================== */
+        
+        /* Animation de déplacement du fond */
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Animation d'apparition du bas vers le haut */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Classes pour animation au scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           SECTION 5 : BOUTONS
+           ======================================== */
+        
+        /* Bouton call-to-action principal */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Bouton de soumission de formulaire */
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           SECTION 6 : SECTIONS GÉNÉRALES
+           ======================================== */
+        
+        /* Configuration de base pour toutes les sections */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Titres de section */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        /* Ligne décorative sous les titres */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* ========================================
+           SECTION 7 : À PROPOS
+           ======================================== */
+        
+        /* Grille pour la section à propos */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* Texte de présentation */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Placeholder pour l'image de profil */
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        /* ========================================
+           SECTION 8 : PROJETS
+           ======================================== */
+        
+        /* Fond alternatif pour la section projets */
+        .projects {
+            background: var(--light-bg);
+        }
+
+        /* Grille responsive pour les cartes de projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Carte individuelle de projet */
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Image/placeholder du projet */
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        /* Informations textuelles du projet */
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .project-info p {
+            color: #64748b;
+        }
+
+        /* ========================================
+           SECTION 9 : FORMULAIRE DE CONTACT
+           ======================================== */
+        
+        /* Conteneur du formulaire */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Groupe de champ de formulaire */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Label des champs */
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Style des champs input et textarea */
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        /* État focus des champs */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Configuration spécifique pour textarea */
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* ========================================
+           SECTION 10 : FOOTER
+           ======================================== */
+        
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ========================================
+           SECTION 11 : RESPONSIVE (MOBILE)
+           ======================================== */
+        
+        /* Adaptations pour écrans de moins de 768px */
+        @media (max-width: 768px) {
+            /* Réduction de la taille du titre hero */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            /* Réduction de la taille du sous-titre hero */
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            /* Passage en une colonne pour la section à propos */
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            /* Réduction de l'espace entre les liens de navigation */
+            .nav-links {
+                gap: 1rem;
+            }
+
+            /* Réduction du padding des sections */
+            section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Mon Portfolio</h1>
-    
+    <!-- ========================================
+         BLOC HTML 1 : NAVIGATION
+         ======================================== -->
+    <nav>
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========================================
+         BLOC HTML 2 : SECTION HERO (ACCUEIL)
+         ======================================== -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Votre Nom</h1>
+            <p>Développeur Web | Designer | Créatif</p>
+            <a href="#projects" class="cta-button">Voir mes projets</a>
+        </div>
+    </section>
+
+    <!-- ========================================
+         BLOC HTML 3 : SECTION À PROPOS
+         ======================================== -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Bonjour ! Je suis un développeur passionné par la création d'expériences web modernes et intuitives.</p>
+                <p>Avec plusieurs années d'expérience dans le développement front-end, je transforme des idées en réalités numériques élégantes et performantes.</p>
+                <p>Mon expertise comprend HTML, CSS, JavaScript et les frameworks modernes. Je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.</p>
+            </div>
+            <div class="about-image">
+                👨‍💻
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         BLOC HTML 4 : SECTION PROJETS
+         ======================================== -->
+    <section id="projects" class="projects fade-in">
+        <h2 class="section-title">Mes Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-info">
+                    <h3>Projet 1</h3>
+                    <p>Application web moderne avec interface intuitive et design responsive.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-info">
+                    <h3>Projet 2</h3>
+                    <p>Site portfolio créatif avec animations fluides et navigation interactive.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">⚡</div>
+                <div class="project-info">
+                    <h3>Projet 3</h3>
+                    <p>Dashboard analytique avec visualisation de données en temps réel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         BLOC HTML 5 : SECTION CONTACT
+         ======================================== -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Contactez-moi</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- ========================================
+         BLOC HTML 6 : FOOTER
+         ======================================== -->
+    <footer>
+        <p>&copy; 2025 Votre Nom. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        /* ========================================
+           BLOC JAVASCRIPT 1 : ANIMATION AU SCROLL
+           Fonction : Fait apparaître les sections progressivement quand on scroll
+           ======================================== */
+        
+        // Sélectionne tous les éléments qui doivent apparaître au scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        // Fonction qui vérifie si un élément est visible dans la fenêtre
+        function checkVisibility() {
+            // Pour chaque élément à animer
+            fadeElements.forEach(element => {
+                // Récupère la position de l'élément par rapport au haut de la fenêtre
+                const elementTop = element.getBoundingClientRect().top;
+                // Récupère la hauteur de la fenêtre
+                const windowHeight = window.innerHeight;
+                
+                // Si l'élément est visible (à moins de 100px du bas de l'écran)
+                if (elementTop < windowHeight - 100) {
+                    // Ajoute la classe 'visible' qui déclenche l'animation CSS
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Écoute l'événement de scroll (quand l'utilisateur fait défiler)
+        window.addEventListener('scroll', checkVisibility);
+        
+        // Vérifie dès le chargement de la page (pour les éléments déjà visibles)
+        checkVisibility();
+
+        /* ========================================
+           BLOC JAVASCRIPT 2 : GESTION DU FORMULAIRE
+           Fonction : Empêche le rechargement de la page et affiche un message
+           ======================================== */
+        
+        // Sélectionne le formulaire de contact
+        const form = document.querySelector('.contact-form');
+        
+        // Écoute l'événement de soumission du formulaire
+        form.addEventListener('submit', function(e) {
+            // Empêche le comportement par défaut (rechargement de la page)
+            e.preventDefault();
+            
+            // Affiche un message de confirmation
+            alert('Merci pour votre message ! Je vous répondrai bientôt.');
+            
+            // Réinitialise tous les champs du formulaire
+            form.reset();
+        });
+
+        /* ========================================
+           BLOC JAVASCRIPT 3 : NAVIGATION FLUIDE
+           Fonction : Scroll en douceur vers les sections lors du clic sur les liens
+           ======================================== */
+        
+        // Sélectionne tous les liens qui commencent par #
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Pour chaque lien, écoute le clic
+            anchor.addEventListener('click', function(e) {
+                // Empêche le saut brusque par défaut
+                e.preventDefault();
+                
+                // Récupère l'ID de la section ciblée (ex: #projects)
+                const targetId = this.getAttribute('href');
+                
+                // Sélectionne l'élément correspondant à cet ID
+                const targetSection = document.querySelector(targetId);
+                
+                // Scroll fluide vers la section ciblée
+                targetSection.scrollIntoView({
+                    behavior: 'smooth', // Animation douce
+                    block: 'start' // Aligne en haut de la fenêtre
+                });
+            });
+        });
+    </script>
 </body>
 </html>
