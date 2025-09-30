@@ -227,8 +227,97 @@
         .hero p {
             font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+        .hero-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.5s backwards;
+        }
+
+        .hero-social-link {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.6rem;
+            transition: var(--transition);
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(80, 15, 28, 0.3), transparent);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .hero-social-link:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .hero-social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(80, 15, 28, 0.5);
+        }
+
+        .hero-social-link span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-social-link[data-network="linkedin"]:hover {
+            background: #0077b5;
+            border-color: #0077b5;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 119, 181, 0.6);
+        }
+
+        .hero-social-link[data-network="github"]:hover {
+            background: #333;
+            border-color: #333;
+            color: white;
+            box-shadow: 0 10px 30px rgba(51, 51, 51, 0.6);
+        }
+
+        .hero-social-link[data-network="discord"]:hover {
+            background: #5865F2;
+            border-color: #5865F2;
+            color: white;
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.6);
+        }
+
+        .hero-social-link[data-network="email"]:hover {
+            background: #EA4335;
+            border-color: #EA4335;
+            color: white;
+            box-shadow: 0 10px 30px rgba(234, 67, 53, 0.6);
+        }
+
+        .hero-social-link[data-network="twitter"]:hover {
+            background: #1DA1F2;
+            border-color: #1DA1F2;
+            color: white;
+            box-shadow: 0 10px 30px rgba(29, 161, 242, 0.6);
         }
 
         .cta-button {
@@ -659,6 +748,24 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#apropos">À propos</a></li>
+                <!-- Icônes sociales -->
+                <div class="hero-social-links">
+                    <a href="https://linkedin.com/in/votre-profil" target="_blank" class="hero-social-link" data-network="linkedin" aria-label="LinkedIn">
+                        <span>💼</span>
+                    </a>
+                    <a href="https://github.com/votre-username" target="_blank" class="hero-social-link" data-network="github" aria-label="GitHub">
+                        <span>💻</span>
+                    </a>
+                    <a href="https://discord.gg/votre-serveur" target="_blank" class="hero-social-link" data-network="discord" aria-label="Discord">
+                        <span>🎮</span>
+                    </a>
+                    <a href="mailto:votre.email@example.com" class="hero-social-link" data-network="email" aria-label="Email">
+                        <span>📧</span>
+                    </a>
+                    <a href="https://twitter.com/votre-username" target="_blank" class="hero-social-link" data-network="twitter" aria-label="Twitter">
+                        <span>🐦</span>
+                    </a>
+            </div>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -674,9 +781,9 @@
     <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="hero-content">
-            <h1>Jean Dupont</h1>
+            <h1>Florent Delbey</h1>
             <div class="subtitle">Développeur Full-Stack</div>
-            <p>Créateur d'expériences web exceptionnelles avec une passion pour le code élégant et les solutions innovantes</p>
+            <p>Étudiant passionné, créatif et curieux, s'intéressant au code et plus particulièrement aux domaines de la cybersécurité, de la data et de l'intelligence artificielle.</p>
             <a href="#projets" class="cta-button">Découvrir mes projets</a>
         </div>
     </section>
@@ -695,10 +802,15 @@
                 <div class="skills-tags">
                     <span class="skill-tag">React</span>
                     <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Java</span>
                     <span class="skill-tag">C#</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Python</span>
                     <span class="skill-tag">Unity</span>
                     <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
                 </div>
             </div>
         </div>
@@ -711,8 +823,8 @@
             <div class="project-card">
                 <div class="project-image">🛒</div>
                 <div class="project-content">
-                    <h3>E-Commerce Platform</h3>
-                    <p>Plateforme complète de commerce électronique avec système de paiement intégré, gestion des stocks et dashboard administrateur.</p>
+                    <h3></h3>
+                    <p></p>
                     <div class="project-tags">
                         <span class="tag">React</span>
                         <span class="tag">Node.js</span>
@@ -725,26 +837,25 @@
             <div class="project-card">
                 <div class="project-image">🎮</div>
                 <div class="project-content">
-                    <h3>Game Analytics Dashboard</h3>
-                    <p>Tableau de bord analytique pour jeux vidéo permettant le suivi en temps réel des métriques de performance et d'engagement.</p>
+                    <h3>The Forsakens</h3>
+                    <p>Création d'un jeu d'aventure complet sous Unity dans un univers fantastique, avec mécaniques de déplacement, interaction, multijoueur, systèmes de combat et gestion avancée en C#.</p>
                     <div class="project-tags">
                         <span class="tag">Unity</span>
                         <span class="tag">C#</span>
-                        <span class="tag">Firebase</span>
+                        <span class="tag">Blender</span>
                     </div>
                     <a href="#" class="project-link">Voir le projet →</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <div class="project-image">📱</div>
+                <div class="project-image">🧠</div>
                 <div class="project-content">
-                    <h3>Mobile App Prototype</h3>
-                    <p>Application mobile de gestion de tâches collaborative avec synchronisation cloud et notifications push.</p>
+                    <h3>Réseaux de Neurones </h3>
+                    <p>Développement d'un réseau de neurones en C capable de résoudre des grilles de sudoku de différentes difficultés, intégrant entraînement, optimisation et résolution automatisée.</p>
                     <div class="project-tags">
-                        <span class="tag">React Native</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">GraphQL</span>
+                        <span class="tag">C/C++</span>
+                        <span class="tag">SDL</span>
                     </div>
                     <a href="#" class="project-link">Voir le projet →</a>
                 </div>
@@ -761,7 +872,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>React / Next.js</span>
-                        <span>90%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 90%"></div>
@@ -770,7 +881,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>TypeScript</span>
-                        <span>85%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 85%"></div>
@@ -779,7 +890,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>CSS / Tailwind</span>
-                        <span>95%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 95%"></div>
@@ -792,7 +903,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>Node.js</span>
-                        <span>88%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 88%"></div>
@@ -801,7 +912,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>C# / .NET</span>
-                        <span>82%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 82%"></div>
@@ -810,7 +921,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>PostgreSQL</span>
-                        <span>80%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 80%"></div>
@@ -823,7 +934,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>Unity</span>
-                        <span>85%</span>
+                        <span>70%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 85%"></div>
@@ -832,16 +943,16 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>C# Scripting</span>
-                        <span>90%</span>
+                        <span>80%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 90%"></div>
                     </div>
-                </div>
+                </div> 
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>Game Design</span>
-                        <span>75%</span>
+                        <span>70%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 75%"></div>
@@ -854,7 +965,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>Git / GitHub</span>
-                        <span>92%</span>
+                        <span>90%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 92%"></div>
@@ -863,7 +974,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>Docker</span>
-                        <span>78%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 78%"></div>
@@ -872,7 +983,7 @@
                 <div class="skill-item">
                     <div class="skill-name">
                         <span>CI/CD</span>
-                        <span>80%</span>
+                        <span>0%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 80%"></div>
@@ -881,37 +992,9 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Me contacter</h2>
-        <div class="contact-content">
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-button">Envoyer</button>
-            </form>
-            <div class="social-links">
-                <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
-                <a href="#" class="social-link" aria-label="GitHub">💻</a>
-                <a href="#" class="social-link" aria-label="Twitter">🐦</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Jean Dupont. Tous droits réservés. | <a href="#">Télécharger CV</a></p>
+        <p>&copy; 2025 Florent Delbey. Tous droits réservés. | <a href="#">Télécharger CV</a></p>
     </footer>
 
     <script>
