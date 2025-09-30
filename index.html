@@ -749,6 +749,10 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#apropos">À propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
             </div>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#competences">Compétences</a></li>
@@ -770,17 +774,6 @@
             <p>Étudiant passionné, créatif et curieux, s'intéressant au code et plus particulièrement aux domaines de la cybersécurité, de la data et de l'intelligence artificielle.</p>
             
             <a href="#projets" class="cta-button">Découvrir mes projets</a>
-            <section class="hero" id="accueil">
-
-        <div class="hero-content">
-
-            <h1>Florent Delbey</h1>
-
-            <div class="subtitle">Développeur Full-Stack</div>
-
-            <p>Étudiant passionné, créatif et curieux, s'intéressant au code et plus particulièrement aux domaines de la cybersécurité, de la data et de l'intelligence artificielle.</p>
-            
-            <a href="#projets" class="cta-button">Découvrir mes projets</a>
             
             <!-- Icônes sociales APRÈS le bouton -->
             <div class="hero-social-links">
@@ -797,8 +790,6 @@
                     <span>📧</span>
                 </a>
             </div>
-        </div>
-    </section>
         </div>
     </section>
 
@@ -1079,6 +1070,12 @@
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(section);
         });
+
+        function copyToClipboard(text, type) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`${type} copié : ${text}`);
+            });
+        }
     </script>
 </body>
 </html>
