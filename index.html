@@ -234,8 +234,8 @@
             display: flex;
             justify-content: center;
             gap: 1.2rem;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease 0.5s backwards;
+            margin-top: 2.5rem;  /* Changé de margin-bottom à margin-top */
+            animation: fadeInUp 0.8s ease 0.7s backwards;  /* Délai d'animation augmenté */
         }
 
         .hero-social-link {
@@ -330,6 +330,7 @@
             font-weight: 600;
             transition: var(--transition);
             animation: fadeInUp 0.8s ease 0.6s backwards;
+            margin-bottom: 0;  /* Ajoutez cette ligne */
         }
 
         .cta-button:hover {
@@ -767,11 +768,16 @@
             <h1>Florent Delbey</h1>
             <div class="subtitle">Développeur Full-Stack</div>
             <p>Étudiant passionné, créatif et curieux, s'intéressant au code et plus particulièrement aux domaines de la cybersécurité, de la data et de l'intelligence artificielle.</p>
+            
             <a href="#projets" class="cta-button">Découvrir mes projets</a>
             <section class="hero" id="accueil">
+
         <div class="hero-content">
+
             <h1>Florent Delbey</h1>
+
             <div class="subtitle">Développeur Full-Stack</div>
+
             <p>Étudiant passionné, créatif et curieux, s'intéressant au code et plus particulièrement aux domaines de la cybersécurité, de la data et de l'intelligence artificielle.</p>
             
             <a href="#projets" class="cta-button">Découvrir mes projets</a>
